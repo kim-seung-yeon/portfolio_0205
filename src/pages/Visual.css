@@ -1,0 +1,554 @@
+@import url('https://fonts.googleapis.com/css2?family=Allura&display=swap');
+
+body {
+    background-color: #010101;
+}
+
+.visual-section {
+    width: 100%;
+    height: 100vh;
+    background-color: #010101;
+    position: relative;
+    overflow: hidden;
+}
+
+/* --- ASYMMETRIC MONDRIAN GRID --- */
+.grid-container {
+    position: absolute;
+    width: 1920px;
+    height: 1024px;
+    left: 50%;
+    top: 50%;
+    transform-origin: center center;
+    pointer-events: none;
+    z-index: 5;
+    opacity: 0;
+    transition: opacity 1.5s ease;
+}
+
+.active .grid-container {
+    opacity: 1;
+}
+
+.line {
+    position: absolute;
+    opacity: 0;
+    will-change: clip-path, opacity;
+}
+
+.v-line {
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.25) 15%, rgba(255, 255, 255, 0.25) 85%, transparent);
+}
+
+.h-line {
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.25) 15%, rgba(255, 255, 255, 0.25) 85%, transparent);
+}
+
+.line.bold.v-line {
+    background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.6) 15%, rgba(255, 255, 255, 0.6) 85%, transparent);
+}
+
+.line.bold.h-line {
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.6) 15%, rgba(255, 255, 255, 0.6) 85%, transparent);
+}
+
+/* Light Drawing Keyframes */
+@keyframes lightDrawV {
+    0% {
+        clip-path: inset(0 0 100% 0);
+        opacity: 0;
+        background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 1) 15%, rgba(255, 255, 255, 1) 85%, transparent);
+        filter: brightness(2) blur(1px) drop-shadow(0 0 8px rgba(255, 204, 51, 0.4));
+    }
+
+    30% {
+        opacity: 1;
+        background: linear-gradient(to bottom, transparent, rgba(255, 250, 205, 1) 15%, rgba(255, 250, 205, 1) 85%, transparent);
+    }
+
+    100% {
+        clip-path: inset(0 0 0 0);
+        opacity: 0.5;
+        background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.4) 15%, rgba(255, 255, 255, 0.4) 85%, transparent);
+        filter: brightness(1) blur(0);
+    }
+}
+
+@keyframes lightDrawH {
+    0% {
+        clip-path: inset(0 100% 0 0);
+        opacity: 0;
+        background: linear-gradient(to right, transparent, rgba(255, 255, 255, 1) 15%, rgba(255, 255, 255, 1) 85%, transparent);
+        filter: brightness(2) blur(1px) drop-shadow(0 0 8px rgba(255, 204, 51, 0.4));
+    }
+
+    30% {
+        opacity: 1;
+        background: linear-gradient(to right, transparent, rgba(255, 250, 205, 1) 15%, rgba(255, 250, 205, 1) 85%, transparent);
+    }
+
+    100% {
+        clip-path: inset(0 0 0 0);
+        opacity: 0.5;
+        background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.4) 15%, rgba(255, 255, 255, 0.4) 85%, transparent);
+        filter: brightness(1) blur(0);
+    }
+}
+
+/* Irregular Line Placements - Synced with text lanes */
+.active .v-line {
+    animation: lightDrawV 1.2s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+}
+
+.active .h-line {
+    animation: lightDrawH 1.2s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+}
+
+.lv-1 {
+    left: 490px;
+    top: 0;
+    height: 100%;
+    animation-delay: 0.1s !important;
+}
+
+.lv-2 {
+    left: 650px;
+    top: 20%;
+    height: 60%;
+    animation-delay: 0.3s !important;
+}
+
+.lv-3 {
+    left: 930px;
+    top: 0;
+    height: 100%;
+    width: 2px !important;
+    animation-delay: 0.5s !important;
+}
+
+.lv-4 {
+    left: 980px;
+    top: 10%;
+    height: 80%;
+    animation-delay: 0.7s !important;
+}
+
+.lv-5 {
+    left: 1300px;
+    top: 0;
+    height: 100%;
+    animation-delay: 0.9s !important;
+}
+
+.lh-1 {
+    top: 250px;
+    left: 0;
+    width: 100%;
+    animation-delay: 0.2s !important;
+}
+
+.lh-2 {
+    top: 512px;
+    left: 15%;
+    width: 70%;
+    height: 2px !important;
+    animation-delay: 0.4s !important;
+}
+
+/* Main bold horizontal, partial */
+.lh-3 {
+    top: 680px;
+    left: 0;
+    width: 100%;
+    animation-delay: 0.6s !important;
+}
+
+.lh-4 {
+    top: 800px;
+    left: 30%;
+    width: 40%;
+    animation-delay: 0.8s !important;
+}
+
+/* Very short partial line */
+
+/* --- TEXT FRAGMENTS --- */
+.text-container {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: 10;
+}
+
+.assembly-wrapper {
+    position: absolute;
+    width: 1920px;
+    height: 1024px;
+    left: 50%;
+    top: 50%;
+}
+
+.fragment-mask {
+    position: absolute;
+    overflow: hidden;
+    /* Hide-and-seek boundary */
+    transition: transform 1s cubic-bezier(0.19, 1, 0.22, 1),
+        top 1s cubic-bezier(0.19, 1, 0.22, 1),
+        left 1s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+/* Masks at their permanent X-positions to avoid horizontal move */
+.p-mask {
+    left: 490px;
+    width: 600px;
+    top: 50px;
+    height: 600px;
+}
+
+.ort-mask {
+    left: 650px;
+    width: 350px;
+    /* Increased */
+    top: 512px;
+    height: 450px;
+}
+
+.f-mask {
+    left: 930px;
+    width: 400px;
+    /* Increased to prevent clipping of wide 'f' */
+    top: 100px;
+    height: 450px;
+}
+
+.olio-mask {
+    left: 980px;
+    width: 400px;
+    /* Increased */
+    top: 512px;
+    height: 450px;
+}
+
+.star-mask {
+    left: 1300px;
+    width: 240px;
+    /* Increased */
+    top: 512px;
+    height: 450px;
+}
+
+.text-fragment {
+    position: absolute;
+    color: #FFFAE0;
+    /* Subtle warm white */
+    text-shadow: 0 0 20px rgba(255, 204, 51, 0.25);
+    /* Subtle yellow glow */
+    white-space: nowrap;
+    width: max-content;
+    opacity: 0;
+    will-change: transform, opacity;
+    padding: 60px;
+    /* Added padding to prevent clipping of flourishes */
+}
+
+/* --- REVEAL: PURE VERTICAL ONLY --- */
+/* Text starts outside its mask boundary (behind the grid line) */
+
+/* P: Slide UP into mask */
+.p-char {
+    left: -60px;
+    top: 40px;
+    /* Fixed top to prevent jump */
+    font-size: 360px;
+    transform: translateY(100%);
+    transition: transform 1s 1.5s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.1s 1.5s ease;
+}
+
+.active .p-char {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ort: Slide DOWN into mask */
+.ort-chars {
+    left: -60px;
+    top: -60px;
+    font-size: 190px;
+    transform: translateY(-100%);
+    transition: transform 1s 1.7s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.1s 1.7s ease;
+}
+
+.active .ort-chars {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* f: Slide UP into mask */
+.f-char {
+    left: -60px;
+    top: 160px;
+    /* Fixed top to prevent jump */
+    font-size: 240px;
+    transform: translateY(100%);
+    transition: transform 1s 1.9s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.1s 1.9s ease;
+}
+
+.active .f-char {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* olio: Slide DOWN into mask */
+.olio-chars {
+    left: -60px;
+    top: -60px;
+    font-size: 190px;
+    transform: translateY(-100%);
+    transition: transform 1s 2.1s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.1s 2.1s ease;
+}
+
+.active .olio-chars {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* star: Slide DOWN into mask */
+.star-char {
+    left: -60px;
+    top: -60px;
+    font-size: 190px;
+    transform: translateY(-100%);
+    transition: transform 1s 2.3s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.1s 2.3s ease;
+}
+
+.active .star-char {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- FINAL ASSEMBLY: GATHER VERTICALLY ONLY (X is already fixed) --- */
+/* 
+   The 'cut-off' issue was likely due to masks being too small or not expanding.
+   We expand masks and align fragments to a common baseline (approx 360-400px).
+*/
+
+/* FINAL ASSEMBLY: TIGHT HORIZONTAL GATHERING */
+.assembled .fragment-mask {
+    overflow: visible !important;
+    z-index: 20;
+}
+
+/* Keep same Left values to ensure ZERO horizontal movement */
+.assembled .p-mask {
+    left: 490px;
+    top: 290px;
+}
+
+.assembled .ort-mask {
+    left: 650px;
+    top: 390px;
+}
+
+.assembled .f-mask {
+    left: 930px;
+    top: 320px;
+}
+
+.assembled .olio-mask {
+    left: 980px;
+    top: 390px;
+}
+
+.assembled .star-mask {
+    left: 1300px;
+    top: 390px;
+}
+
+/* Shimmer Animation */
+@keyframes shine {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    100% {
+        background-position: 200% 50%;
+    }
+}
+
+.assembled .text-fragment {
+    top: 0 !important;
+    left: -60px !important;
+    /* Offset the 60px padding */
+    transform: none !important;
+    transition: transform 1s cubic-bezier(0.19, 1, 0.22, 1),
+        top 1s cubic-bezier(0.19, 1, 0.22, 1),
+        left 1s cubic-bezier(0.19, 1, 0.22, 1),
+        opacity 1s ease;
+
+    /* Silver Shimmer (Once) */
+    background: linear-gradient(90deg, #FFFAE0 0%, #FFFFFF 50%, #FFFAE0 100%);
+    background-size: 200% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shine 3s linear 1;
+
+    /* Subtle Glow */
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.assembled .p-char,
+.assembled .f-char {
+    /* Gold Shimmer (Once) */
+    background: linear-gradient(90deg, #FFCC33 0%, #FFF5CC 50%, #FFCC33 100%);
+    background-size: 200% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shine 3s linear 1;
+
+    /* Moderate Gold Glow */
+    text-shadow: 0 0 20px rgba(255, 204, 51, 0.6);
+}
+
+/* Fonts */
+.allura {
+    font-family: 'Allura', cursive;
+    line-height: 1;
+}
+
+.neue {
+    font-family: 'Neue Montreal', sans-serif;
+    font-weight: 700;
+    line-height: 1;
+}
+
+/* 1024px Responsive Adjustments */
+@media (max-width: 1024px) {
+
+    .p-char,
+    .f-char {
+        font-size: 220px;
+    }
+
+    .ort-chars,
+    .olio-chars,
+    .star-char {
+        font-size: 170px;
+    }
+
+    .p-mask,
+    .f-mask {
+        top: 120px;
+    }
+
+    .ort-mask,
+    .olio-mask,
+    .star-mask {
+        top: 520px;
+    }
+
+    .assembled .p-mask {
+        top: 320px;
+    }
+
+    .assembled .f-mask {
+        top: 300px;
+    }
+
+    .assembled .ort-mask,
+    .assembled .olio-mask,
+    .assembled .star-mask {
+        top: 365px;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .p-char,
+    .f-char {
+        font-size: 280px;
+    }
+
+    .ort-chars,
+    .olio-chars,
+    .star-char {
+        font-size: 210px;
+    }
+
+    .p-mask,
+    .f-mask {
+        top: 150px;
+    }
+
+    .ort-mask,
+    .olio-mask,
+    .star-mask {
+        top: 530px;
+    }
+
+    .assembled .p-mask {
+        top: 330px;
+    }
+
+    .assembled .f-mask {
+        top: 310px;
+    }
+
+    .assembled .ort-mask,
+    .assembled .olio-mask,
+    .assembled .star-mask {
+        top: 375px;
+    }
+}
+
+/* 390px Mobile Responsive Adjustments */
+@media (max-width: 480px) {
+
+    .p-char,
+    .f-char {
+        font-size: 320px;
+    }
+
+    .ort-chars,
+    .olio-chars,
+    .star-char {
+        font-size: 240px;
+    }
+
+    .p-mask,
+    .f-mask {
+        top: 180px;
+    }
+
+    .ort-mask,
+    .olio-mask,
+    .star-mask {
+        top: 540px;
+    }
+
+    .assembled .p-mask {
+        top: 340px;
+    }
+
+    .assembled .f-mask {
+        top: 320px;
+    }
+
+    .assembled .ort-mask,
+    .assembled .olio-mask,
+    .assembled .star-mask {
+        top: 385px;
+    }
+}
+
+/* Ensure overflow visible to prevent clipping */
+.mask-container.assembled,
+.fragment-mask.assembled {
+    overflow: visible !important;
+    z-index: 100 !important;
+}

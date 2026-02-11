@@ -1,0 +1,485 @@
+/* 리스트 기본 제거 */
+ul li {
+    list-style: none;
+}
+
+/* 공통 p 스타일 */
+p {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-top: 6px;
+    margin-bottom: 6px;
+}
+
+.yellow-char {
+    color: inherit !important;
+}
+
+/* info 섹션 */
+#info {
+    width: 100%;
+    position: relative;
+    background-color: #010101;
+}
+
+/* top 영역 */
+.top {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto 150px auto;
+    padding: 170px 0 0 0;
+    width: 95%;
+}
+
+.top h2 {
+    font-size: 100px;
+    margin-left: 100px;
+    position: relative;
+    z-index: 3;
+}
+
+.top .info-profile-title {
+    font-family: 'Allura', cursive !important;
+    font-size: clamp(32px, 3.125vw, 60px);
+    color: #ffffff;
+}
+
+.top .info-profile-title span {
+    font-family: inherit !important;
+    color: #ffffff !important;
+}
+
+/* 박스 */
+.box {
+    background: #FFCC33;
+    position: absolute;
+}
+
+.big.box {
+    width: 173px;
+    height: 173px;
+    top: 153px;
+    left: 50px;
+    z-index: 2;
+}
+
+.small.box {
+    width: 70px;
+    height: 70px;
+    position: absolute;
+    bottom: 100px;
+    right: 5%;
+    /* topline과 정렬을 위해 수정 */
+    transform: translateX(35px);
+    /* 박스 중앙에 선이 오도록 조정 (box width 70px / 2) */
+    z-index: 10;
+}
+
+/* 라인 */
+.topline {
+    position: absolute;
+    width: 1px;
+    height: 700px;
+    background-color: #fff;
+    top: 50px;
+    right: 5%;
+    z-index: 100;
+}
+
+.bottomline {
+    position: absolute;
+    width: 406px;
+    height: 0.5px;
+    background-color: #fff;
+    bottom: 5%;
+    left: 71%;
+}
+
+/* sticky-wrap: sticky 전용 스크롤 컨테이너 */
+.sticky-wrap {
+    position: relative;
+    height: 500vh;
+}
+
+.sticky-viewport-fix {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+}
+
+/* bottom 영역 */
+.bottom {
+    display: flex;
+    gap: 100px;
+    width: 87%;
+    margin: 0 auto;
+    height: 100vh;
+    align-items: flex-start;
+}
+
+.bottom .info-left {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.bottom .img {
+    background: #000;
+    width: 32%;
+    height: 700px;
+    border: none;
+}
+
+.bottom .img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.bottom .text {
+    color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    width: 53%;
+    margin-top: 120px;
+}
+
+.bottom .text .left,
+.bottom .text .right {
+    width: 44%;
+}
+
+/* 공통 title */
+.bottom .text .title {
+    font-size: 22px;
+    font-weight: bold;
+    color: #FBFEE7;
+}
+
+.bottom .text .title i {
+    font-style: italic;
+    color: #FFCC33;
+}
+
+/* text-box 공통 간격 */
+.left>div,
+.right>div {
+    margin-bottom: 55px
+}
+
+/* text-box 내부 p */
+.left .text-box p,
+.right .text-box p {
+    font-size: 14px;
+    margin-top: 6px;
+    margin-bottom: 6px;
+}
+
+
+.bottom .info-img-stack {
+    position: relative;
+    width: 450px;
+    aspect-ratio: 6 / 7;
+}
+
+.bottom .info-img-card {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform;
+    transform-origin: center center;
+}
+
+/* z-index: 나중에 올라오는 이미지가 위에 */
+.bottom .info-img-card:nth-child(1) {
+    z-index: 1;
+    left: 0;
+    top: 0;
+    transform: rotate(-8deg);
+}
+
+.bottom .info-img-card:nth-child(2) {
+    z-index: 2;
+    left: 0;
+    top: 0;
+    transform: rotate(5deg);
+}
+
+.bottom .info-img-card:nth-child(3) {
+    z-index: 3;
+    left: 0;
+    top: 0;
+    transform: rotate(-3deg);
+}
+
+.bottom .info-img-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+    border-radius: 4px;
+}
+
+
+/* li 내부 p */
+.bottom .text .text-box ul li p.year {
+    font-weight: bold;
+    color: #ffffff;
+    font-size: 14px;
+}
+
+.bottom .text .text-box ul li p.content {
+    font-weight: 100;
+}
+
+.bottom .text .text-box ul li {
+    margin-bottom: 14px;
+}
+
+.bottom .text .text-line {
+    width: 100%;
+    height: 0.5px;
+    background: #fff;
+    margin-top: 10px;
+}
+
+/* Hover 시 배경 이미지 밝기 및 확대 */
+.exp-bg {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.8);
+    transition: all 0.5s ease;
+    transform: scale(1);
+}
+
+.exp-card:hover .exp-bg {
+    filter: brightness(1.2);
+    transform: scale(1.05);
+}
+
+.skill-item p {
+    font-weight: bold;
+    color: #ffffff;
+    font-size: 12px;
+}
+
+.skill-item span {
+    font-size: 14px;
+    font-weight: 100;
+}
+
+/* skill section */
+.skill .text-box {
+    display: flex;
+    flex-direction: column;
+}
+
+/* career section */
+.career-header {
+    text-align: center;
+    margin-bottom: 100px;
+}
+
+.career-title {
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+.career-subtitle-wrapper {
+    font-size: 18px;
+}
+
+.career-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.career-card {
+    position: relative;
+    width: 32%;
+    height: 400px;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.career-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 20px;
+    background: rgba(1, 1, 1, 0.6);
+    width: 100%;
+    height: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.card-title {
+    font-weight: bold;
+    font-size: 22px;
+}
+
+.card-desc {
+    font-size: 16px;
+}
+
+/* 하단 마퀴 */
+.bottom-marquee {
+    overflow: hidden;
+    white-space: nowrap;
+    margin-top: 100px;
+}
+
+.marquee-content {
+    display: inline-block;
+    animation: marquee 20s linear infinite;
+}
+
+.marquee-content span {
+    margin-right: 50px;
+    font-size: 12px;
+    font-weight: 100;
+}
+
+@keyframes marquee {
+    0% {
+        transform: translateX(0);
+    }
+
+}
+
+/* 1024px Responsive - Static Layout & Image Row */
+@media (max-width: 1024px) {
+
+    /* Disable Sticky Scroll Effect */
+    .sticky-wrap {
+        height: auto !important;
+        padding-bottom: 50px;
+    }
+
+    .sticky-viewport-fix {
+        position: relative !important;
+        height: auto !important;
+        top: auto !important;
+    }
+
+    /* Change Layout to Column */
+    .bottom {
+        display: flex;
+        flex-direction: column;
+        height: auto !important;
+        align-items: center;
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    /* Images Section: Row Layout */
+    .bottom .info-left {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    .bottom .info-img-stack {
+        width: 100%;
+        max-width: none;
+        height: auto !important;
+        aspect-ratio: auto !important;
+        margin-top: 50px;
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+    }
+
+    .bottom .info-img-card {
+        position: relative !important;
+        width: 32% !important;
+        height: auto !important;
+        aspect-ratio: 3/4;
+        /* Adjusted ratio for card */
+        transform: none !important;
+        /* Disable JS transform */
+        opacity: 1 !important;
+        /* Always visible */
+        left: auto !important;
+        top: auto !important;
+    }
+
+    /* Text Section: Below Images */
+    .bottom .text {
+        width: 100%;
+        margin-top: 80px;
+        justify-content: space-between;
+    }
+
+    /* Header & Decor Adjustments (1024px) */
+    .top {
+        padding-top: 130px;
+        margin-bottom: 100px;
+    }
+
+    .top h2 {
+        font-size: 80px;
+        margin-left: 70px;
+    }
+
+    .big.box {
+        width: 140px;
+        height: 140px;
+        top: 120px;
+        left: 40px;
+    }
+
+    /* Hide decorative lines/boxes in mobile */
+    .small.box,
+    .topline,
+    .bottomline {
+        display: none;
+    }
+}
+
+/* 768px Responsive - Stack Text and Adjust Images */
+@media (max-width: 768px) {
+    .bottom .text {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .bottom .text .left,
+    .bottom .text .right {
+        width: 100%;
+    }
+
+    /* Header & Decor (768px) */
+    .top {
+        margin-bottom: 50px;
+        padding-top: 100px;
+    }
+
+    .top h2 {
+        font-size: 50px;
+        margin-left: 20px;
+    }
+
+    .top p {
+        font-size: 30px;
+    }
+
+    .big.box {
+        width: 90px;
+        height: 90px;
+        top: 90px;
+        left: 15px;
+    }
+
+
+}

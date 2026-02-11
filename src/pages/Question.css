@@ -1,0 +1,333 @@
+.question-page {
+    width: 100%;
+    height: 350vh;
+    /* Allow enough scroll space */
+    background-color: #010101;
+    color: #fff;
+    position: relative;
+    margin-top: 170px;
+}
+
+.question-sticky-wrapper {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+    overflow: hidden;
+    box-sizing: border-box;
+    background-color: #010101;
+}
+
+.question-header {
+    position: absolute;
+    top: clamp(5vh, 12vh, 20vh);
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    width: 100%;
+    z-index: 2;
+}
+
+.question-header h2 {
+    font-size: clamp(40px, 6.25vw, 120px);
+    font-weight: 900;
+    margin-bottom: clamp(12px, 1.25vw, 24px);
+    line-height: 1;
+    letter-spacing: -2px;
+    font-family: 'Nene Montreal', sans-serif;
+}
+
+.question-header p {
+    font-size: clamp(18px, 0.94vw, 22px);
+    line-height: 1.6;
+    color: #D6A42E;
+    /* Gold/Yellowish accent similar to many premium dark folios */
+    font-weight: 500;
+}
+
+/* Cards Track */
+/* Cards Track */
+.question-cards-track {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 540px;
+    /* Increased to approx 50% height */
+}
+
+.q-card {
+    width: 864px;
+    /* Increased width */
+    height: 540px;
+    background-color: #F3F1E8;
+    color: #010101;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+/* Responsive scaling below 1920px */
+@media (max-width: 1920px) {
+    .question-cards-track {
+        height: 50vh;
+    }
+
+    .q-card {
+        width: 45vw;
+        height: 50vh;
+    }
+}
+
+.q-card .text-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.q-num {
+    font-size: clamp(10px, 0.625vw, 12px);
+    font-weight: 600;
+    color: #000;
+    padding: clamp(20px, 2.08vw, 40px) 0
+}
+
+.q-card h3 {
+    font-size: clamp(20px, 2.45vw, 47px);
+    font-weight: 700;
+    line-height: 1.2;
+    word-break: keep-all;
+    letter-spacing: -1px;
+    color: #010101;
+    text-align: center;
+}
+
+.q-desc {
+    font-size: clamp(15px, 0.73vw, 18px);
+    color: #333;
+    line-height: 1.5;
+    margin: clamp(40px, 5.05vw, 97px) 0 clamp(25px, 2.6vw, 50px) 0;
+    text-align: center;
+    max-width: 70%;
+    /* 추가: 제목 너비와 비슷하게 제한 */
+    word-break: keep-all;
+    /* 추가: 단어 단위 줄바꿈으로 가독성 향상 */
+}
+
+/* 1440px - Adjust header spacing for laptops */
+@media (max-width: 1440px) {
+    .question-header {
+        top: 10vh;
+    }
+
+    .question-header h2 {
+        margin-bottom: 20px;
+    }
+}
+
+/* 1024px - Adjust header spacing */
+@media (max-width: 1024px) {
+    .question-header {
+        top: 18vh;
+    }
+}
+
+/* 900px - Further reduce spacing */
+@media (max-width: 900px) {
+    .question-header {
+        top: 20vh;
+    }
+}
+
+/* 770px Tablet Responsive */
+@media (max-width: 770px) {
+    .question-page {
+        height: auto;
+        min-height: 100vh;
+    }
+
+    .question-sticky-wrapper {
+        position: relative;
+        height: auto;
+        min-height: 100vh;
+        padding: 60px 0;
+    }
+
+    .question-header {
+        position: relative;
+        top: 0;
+        left: 0;
+        transform: none;
+        margin-bottom: 50px;
+    }
+
+    .question-header h2 {
+        font-size: 60px;
+    }
+
+    .question-header p {
+        font-size: 14px;
+        padding: 0 20px;
+    }
+
+    .question-cards-track {
+        position: relative;
+        width: 95%;
+        margin: 0 auto;
+        height: auto;
+        transform: none;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        padding: 0;
+    }
+
+    .q-card {
+        position: relative !important;
+        width: 100% !important;
+        max-width: 100%;
+        height: auto;
+        min-height: 280px;
+        margin: 0;
+        transform: none !important;
+        opacity: 1 !important;
+    }
+
+    .q-card .text-box {
+        padding: 0;
+    }
+
+    .q-card h3 {
+        font-size: 28px;
+        padding: 0;
+        max-width: 90%;
+    }
+
+    .q-desc {
+        font-size: 11px;
+        margin: 40px 0 30px 0;
+        max-width: 90%;
+    }
+
+    .q-num {
+        padding: 30px 0;
+    }
+}
+
+/* 480px Mobile Responsive */
+@media (max-width: 480px) {
+    .question-sticky-wrapper {
+        padding: 40px 0;
+    }
+
+    .question-header {
+        margin-bottom: 40px;
+    }
+
+    .question-header h2 {
+        font-size: 48px;
+    }
+
+    .question-header p {
+        font-size: 13px;
+        padding: 0 15px;
+    }
+
+    .question-cards-track {
+        width: 90%;
+        gap: 15px;
+        padding: 0;
+    }
+
+    .q-card {
+        min-height: 250px;
+        max-width: 100%;
+        margin: 0;
+    }
+
+    .q-card .text-box {
+        padding: 0;
+    }
+
+    .q-card h3 {
+        font-size: 22px;
+        padding: 0;
+        line-height: 1.3;
+        max-width: 90%;
+    }
+
+    .q-desc {
+        font-size: 10px;
+        margin: 30px 0 25px 0;
+        max-width: 90%;
+        line-height: 1.4;
+    }
+
+    .q-num {
+        padding: 25px 0;
+        font-size: 11px;
+    }
+}
+
+/* 390px Small Mobile Responsive */
+@media (max-width: 390px) {
+    .question-sticky-wrapper {
+        padding: 35px 0;
+    }
+
+    .question-header {
+        margin-bottom: 35px;
+    }
+
+    .question-header h2 {
+        font-size: 40px;
+    }
+
+    .question-header p {
+        font-size: 12px;
+        padding: 0 12px;
+    }
+
+    .question-cards-track {
+        width: 90%;
+        gap: 12px;
+        padding: 0;
+    }
+
+    .q-card {
+        min-height: 230px;
+        max-width: 100%;
+        margin: 0;
+    }
+
+    .q-card .text-box {
+        padding: 0;
+    }
+
+    .q-card h3 {
+        font-size: 20px;
+        padding: 0;
+        max-width: 90%;
+    }
+
+    .q-desc {
+        font-size: 9px;
+        margin: 25px 0 20px 0;
+        max-width: 92%;
+    }
+
+    .q-num {
+        padding: 20px 0;
+        font-size: 10px;
+    }
+}

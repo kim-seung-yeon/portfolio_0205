@@ -1,0 +1,180 @@
+@import url('https://fonts.googleapis.com/css2?family=Neue+Montreal:wght@400;700&display=swap');
+
+.contact-page {
+    position: relative;
+    width: 100%;
+    height: 250vh;
+    /* Scroll distance */
+    background-color: #010101;
+}
+
+.contact-sticky {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contact-bg-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+.contact-curtain {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #FBFEE7;
+    z-index: 5;
+    /* transition: height 0.1s ease-out;  Manual scroll handling is better without transition or very short one */
+    will-change: height;
+}
+
+/* Text Layering Container */
+.contact-text-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    pointer-events: none;
+    /* Allows click through to curtain/video if needed */
+}
+
+/* Layer 1: Stroke Text (Always visible) */
+.text-stroke-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+/* Div text replaced by SVG */
+
+/* Layer 2: SVG Curtain */
+.curtain-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.mask-text {
+    font-size: clamp(80px, 15vw, 250px);
+    font-family: 'Neue Montreal', sans-serif;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -0.05em;
+    /* Font styles matched to h2 */
+}
+
+.contact-page h2 {
+    font-size: clamp(80px, 15vw, 250px);
+    font-family: 'Neue Montreal', sans-serif;
+    font-weight: 900;
+    text-align: center;
+    line-height: 0.9;
+    letter-spacing: -0.05em;
+    text-transform: uppercase;
+    margin: 0;
+    will-change: color;
+    color: #fff;
+    /* Black for masking video */
+}
+
+
+.contact-bottom {
+    display: flex;
+    justify-content: space-between;
+    color: #010101;
+    position: absolute;
+    bottom: 60px;
+    width: 100%;
+    padding: 0 5%;
+    box-sizing: border-box;
+    z-index: 20;
+}
+
+.contact-bottom p {
+    width: 33%;
+    text-align: center;
+    color: #010101;
+    font-size: clamp(12px, 1.2vw, 20px);
+    /* Responsive font size */
+    font-weight: 300;
+}
+
+.contact-bottom p:nth-child(1) {
+    text-align: left;
+}
+
+.contact-bottom p:nth-child(3) {
+    text-align: right;
+}
+
+@media (max-width: 1024px) {
+    .contact-page h2 {
+        font-size: 150px;
+    }
+
+    .contact-bottom {
+        padding: 0 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .contact-page h2 {
+        font-size: 100px;
+    }
+
+    .contact-bottom {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        bottom: 50px;
+        text-align: center;
+    }
+
+    .contact-bottom p {
+        width: 100%;
+        text-align: center !important;
+        /* 모든 p 태그 중앙 정렬 강제 */
+        margin: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .contact-page h2 {
+        font-size: 60px;
+    }
+
+    .contact-bottom {
+        bottom: 40px;
+        gap: 10px;
+    }
+
+    .contact-bottom p {
+        font-size: 14px;
+        width: 100%;
+    }
+}

@@ -1,0 +1,411 @@
+section.project {
+    width: 100%;
+    /* Parallax Overlap Logic */
+    margin-top: -100vh;
+    position: relative;
+    z-index: 50;
+    background-color: #010101;
+    /* Decorative background lines */
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 100px 100px;
+}
+
+.project-inner {
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* 대제목 */
+.project-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 120px 0 170px 0;
+    /* Reduced top padding for better transition */
+    background-color: #010101;
+    width: 100%;
+}
+
+.project-title h2.title {
+    font-size: 80px;
+    color: #fff;
+    font-family: 'Neue Montreal', sans-serif;
+    font-weight: bold;
+    line-height: 1;
+    margin: 0;
+}
+
+.project-title p.subtitle {
+    font-size: 60px;
+    font-family: 'allura', cursive;
+    color: #fff;
+    position: relative;
+    top: 45px;
+    left: 100px;
+    transform: rotate(10deg);
+    margin: 0;
+}
+
+.project-title .title-text {
+    font-size: 18px;
+    color: #AEAEAE;
+    margin-top: 32px;
+    font-weight: 300;
+}
+
+/* 프로젝트 컨테이너 */
+.project-container {
+    width: 100%;
+    background-color: #010101;
+    position: relative;
+    z-index: 2;
+}
+
+.project-item {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+}
+
+.sticky-side {
+    position: sticky;
+    top: 0;
+    width: 50%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.project-img-box {
+    width: 80%;
+    height: 70%;
+    border-radius: 0;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    position: relative;
+    /* Scattering effect initialization */
+    opacity: 0;
+    transform: scale(0.6) translateY(200px) rotate(-10deg);
+    transition: all 1.2s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.project-item.in-view .project-img-box {
+    opacity: 1;
+    transform: scale(1) translateY(0) rotate(0);
+}
+
+/* Staggered appearance */
+.project-item.split .project-img-box {
+    transition-delay: 0.1s;
+}
+
+.project-item.kbrand .project-img-box {
+    transition-delay: 0.2s;
+}
+
+.project-item.fandom .project-img-box {
+    transition-delay: 0.3s;
+}
+
+.project-img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.4);
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* Hover Effects */
+.project-img-box:hover {
+    transform: translateY(-20px);
+}
+
+.project-img-box:hover img {
+    filter: brightness(1);
+    transform: scale(1.05);
+}
+
+/* Click Button Overlay */
+.project-hover-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+}
+
+.project-img-box:hover .project-hover-overlay {
+    opacity: 1;
+}
+
+.project-click-btn {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 24px;
+    font-weight: 800;
+    text-transform: lowercase;
+    letter-spacing: 1px;
+    padding-bottom: 5px;
+    border-bottom: 2px solid #fff;
+    cursor: pointer;
+    transform: translateY(20px);
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.project-img-box:hover .project-click-btn {
+    transform: translateY(0);
+}
+
+.scroll-side {
+    width: 50%;
+    padding: 10vh 5% 20vh 5%;
+}
+
+.project-content {
+    width: 100%;
+}
+
+.project-detail-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    margin-bottom: 60px;
+}
+
+/* 애니메이션 */
+.animate-text {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.animate-text.in-view {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.grid-item {
+    position: relative;
+    padding: 40px 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Vertical Stretching Lines */
+.grid-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: -100px;
+    bottom: -100px;
+    width: 1px;
+    background: linear-gradient(to bottom,
+            transparent 0%,
+            rgba(255, 255, 255, 0.1) 20%,
+            rgba(255, 255, 255, 0.1) 80%,
+            transparent 100%);
+}
+
+/* Horizontal Stretching Lines */
+.grid-item::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -50%;
+    right: -50%;
+    height: 1px;
+    background: linear-gradient(to right,
+            transparent 0%,
+            rgba(255, 255, 255, 0.1) 20%,
+            rgba(255, 255, 255, 0.1) 80%,
+            transparent 100%);
+}
+
+.grid-item h3 {
+    font-size: 20px;
+    font-weight: 800;
+    color: #FFCC33;
+    /* Use accent color for labels */
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-family: 'Neue Montreal', sans-serif;
+}
+
+.grid-item p {
+    font-size: 16px;
+    color: #D1D1D1;
+    line-height: 1.7;
+    word-break: keep-all;
+    font-weight: 300;
+}
+
+/* 툴 아이콘 */
+.tool-icons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.tool-icon {
+    width: 60px;
+    height: 60px;
+    background: #1A1C1E;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.tool-icon img,
+.tool-icon svg {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+}
+
+.tool-icon:hover {
+    transform: translateY(-5px);
+    background: #1a1a1a;
+}
+
+/* 하단 버튼 */
+.project-btns {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    gap: 80px;
+}
+
+.project-btns a {
+    position: relative;
+    font-size: 32px;
+    font-weight: 700;
+    color: #888;
+    text-decoration: none;
+    padding-bottom: 8px;
+    transition: color 0.3s, opacity 0.3s;
+    opacity: 0.8;
+}
+
+.project-btns a.visit-figma {
+    opacity: 0.4;
+}
+
+.project-btns a:hover {
+    opacity: 1;
+    color: #FFCC33;
+}
+
+.line-box {
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.line-box-fill {
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #888;
+    transition: width 0.4s cubic-bezier(0.23, 1, 0.32, 1), background 0.3s ease;
+}
+
+.project-btns a:hover .line-box-fill {
+    width: 100%;
+    background: #FFCC33;
+}
+
+
+.line-box::after {
+    content: '';
+    position: absolute;
+    right: -4px;
+    top: 0;
+    width: 10px;
+    height: 10px;
+    background: #FFCC33;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.project-btns a:hover .line-box {
+    width: 100%;
+}
+
+.project-btns a:hover .line-box::after {
+    opacity: 1;
+}
+
+/* 프로젝트 구분 */
+.project-item.kbrand,
+.project-item.fandom {
+    border-top: 1px solid #1a1a1a;
+}
+
+.progress-group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.progress-item {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.progress-item span:first-child {
+    font-size: 16px;
+    color: #fff;
+    width: 80px;
+    font-weight: 400;
+}
+
+.progress-item .bar-bg {
+    flex: 1;
+    max-width: 200px;
+    height: 14px;
+    background: #1a1a1a;
+    position: relative;
+    border-radius: 2px;
+}
+
+.progress-item .bar-fill {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background: #FFCC33;
+}
+
+.progress-item .percent {
+    font-size: 16px;
+    color: #fff;
+    font-weight: 700;
+    width: 50px;
+    text-align: right;
+}

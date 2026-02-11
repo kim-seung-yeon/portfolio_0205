@@ -1,0 +1,398 @@
+:root {
+    --nav-line-width: 100px;
+}
+
+.nav-wrapper {
+    position: fixed;
+    top: 40px;
+    left: 0;
+    width: 100%;
+    z-index: 1010;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+}
+
+.nav-container {
+    display: flex;
+    align-items: center;
+    pointer-events: auto;
+    background: transparent;
+    padding: 0 40px;
+    gap: 15px;
+}
+
+@media (max-width: 1024px) {
+    :root {
+        --nav-line-width: 70px;
+    }
+
+    .nav-container {
+        padding: 0 25px;
+        gap: 12px;
+    }
+
+    .nav-btn {
+        min-width: 110px !important;
+        padding: 9px 18px !important;
+        font-size: 10.5px !important;
+        letter-spacing: 1.5px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    :root {
+        --nav-line-width: 40px;
+    }
+
+    .nav-container {
+        padding: 0 15px;
+        gap: 8px;
+    }
+
+    .nav-btn {
+        min-width: 80px !important;
+        padding: 7px 12px !important;
+        font-size: 9px !important;
+        letter-spacing: 1px !important;
+    }
+
+    .btn-text-wrapper {
+        height: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    :root {
+        --nav-line-width: 25px;
+    }
+
+    .nav-container {
+        padding: 0 8px;
+        gap: 4px;
+    }
+
+    .nav-btn {
+        min-width: 65px !important;
+        padding: 6px 8px !important;
+        font-size: 8px !important;
+        letter-spacing: 0.5px !important;
+    }
+
+    .btn-text-wrapper {
+        height: 10px;
+    }
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.nav-btn {
+    border: 1px solid rgba(136, 136, 136, 0.3);
+    background: rgba(255, 255, 255, 0.05);
+    color: #888888;
+    padding: 10px 24px;
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    min-width: 120px;
+    letter-spacing: 2px;
+    font-family: 'Neue Montreal', sans-serif;
+    white-space: nowrap;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    flex-shrink: 0;
+    overflow: hidden;
+    /* 텍스트 애니메이션을 위해 추가 */
+}
+
+/* 텍스트 애니메이션 핵심 구조 */
+.btn-text-wrapper {
+    position: relative;
+    display: block;
+    height: 14px;
+    /* 폰트 높이에 맞춤 */
+    overflow: hidden;
+}
+
+.btn-text,
+.btn-text-clone {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.btn-text-clone {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+}
+
+.char {
+    display: inline-block;
+    transition: transform 0.3s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+/* Hover 시 글자 하나씩 올라가는 모션 */
+.nav-btn:hover .char {
+    transform: translateY(-100%);
+}
+
+.nav-btn.active,
+.nav-btn.past {
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.8);
+}
+
+.nav-btn.past {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.nav-btn.active {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.nav-btn.active .char,
+.nav-btn.past .char {
+    color: #ffffff;
+}
+
+.nav-btn:hover {
+    color: #FFCC33;
+    border-color: #FFCC33;
+}
+
+.nav-btn:hover .char {
+    transform: translateY(-100%);
+    color: #FFCC33;
+}
+
+/* 스크롤 진행 선 트랙 */
+.nav-line-track {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.08);
+    position: relative;
+    flex-shrink: 0;
+    margin: 0;
+    overflow: hidden;
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.nav-line-fill {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background: #FFCC33;
+    width: 0%;
+    transition: width 0.1s linear;
+}
+
+/* Light Mode Styles */
+.light-mode .nav-btn {
+    border-color: rgba(1, 1, 1, 0.1);
+    background: rgba(1, 1, 1, 0.03);
+    color: rgba(1, 1, 1, 0.4);
+}
+
+.light-mode .nav-btn.active,
+.light-mode .nav-btn.past {
+    color: #010101;
+    border-color: rgba(1, 1, 1, 0.6);
+}
+
+.light-mode .nav-btn.past {
+    background: rgba(1, 1, 1, 0.08);
+}
+
+.light-mode .nav-btn.active {
+    background: rgba(1, 1, 1, 0.15);
+}
+
+.light-mode .nav-btn:hover,
+.light-mode .nav-btn:hover .char {
+    color: #FFCC33;
+    border-color: #FFCC33;
+}
+
+.light-mode .nav-line-track {
+    background: rgba(1, 1, 1, 0.05);
+}
+
+.light-mode .nav-line-fill {
+    background: #FFCC33;
+}
+
+/* Hamburger Menu Button */
+.nav-hamburger {
+    display: none;
+    position: fixed;
+    right: 25px;
+    top: 25px;
+    width: 30px;
+    height: 20px;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    z-index: 2000;
+}
+
+.nav-hamburger span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: #666;
+    transition: all 0.3s ease;
+}
+
+/* Light Mode Hamburger */
+.light-mode .nav-hamburger span {
+    background-color: #010101;
+}
+
+/* Mobile Responsive */
+@media (max-width: 769px) {
+
+    .nav-wrapper {
+        justify-content: flex-end;
+        pointer-events: none;
+    }
+
+    .nav-hamburger {
+        display: flex;
+        pointer-events: auto;
+    }
+
+    /* Hamburger Animation */
+    .nav-hamburger.open span:nth-child(1) {
+        transform: translateY(9px) rotate(45deg);
+        background-color: #fff !important;
+        /* 메뉴 열리면 흰색 */
+    }
+
+    .nav-hamburger.open span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .nav-hamburger.open span:nth-child(3) {
+        transform: translateY(-9px) rotate(-45deg);
+        background-color: #fff !important;
+    }
+
+    /* Mobile Menu Container */
+    .nav-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: #010101;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+        padding: 0;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.5s ease;
+        pointer-events: none;
+        z-index: 1500;
+    }
+
+    .nav-container.active {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+    }
+
+    .nav-item {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.5s ease;
+    }
+
+    .nav-container.active .nav-item {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* Stagger Animation */
+    .nav-container.active .nav-item:nth-child(1) {
+        transition-delay: 0.1s;
+    }
+
+    .nav-container.active .nav-item:nth-child(2) {
+        transition-delay: 0.2s;
+    }
+
+    .nav-container.active .nav-item:nth-child(3) {
+        transition-delay: 0.3s;
+    }
+
+    .nav-container.active .nav-item:nth-child(4) {
+        transition-delay: 0.4s;
+    }
+
+    .nav-container.active .nav-item:nth-child(5) {
+        transition-delay: 0.5s;
+    }
+
+    /* Hide decorative lines in mobile */
+    .nav-line-track {
+        display: none;
+    }
+
+    .nav-btn {
+        width: auto;
+        min-width: unset !important;
+        border: none;
+        font-size: 24px !important;
+        color: #595959;
+        padding: 10px !important;
+        background: transparent !important;
+        transition: all 0.3s ease;
+    }
+
+    /* 특정 버튼 호버 시: 색상 강조 및 확대 */
+    .nav-container.active .nav-btn:hover {
+        color: #fff;
+        /* 강조 색상 */
+        transform: scale(1.15);
+        /* 살짝 커짐 */
+    }
+
+    /* 텍스트 색상 노란색 강조도 가능 */
+    .nav-container.active .nav-btn:hover .char {
+        color: #FFCC33;
+    }
+
+    .nav-btn:hover {
+        /* 아래 코드들은 위 규칙에 통합됨 */
+        color: #FFCC33;
+    }
+
+    .btn-text-clone {
+        display: none;
+        /* 심플하게 텍스트만 */
+    }
+
+    .btn-text-wrapper {
+        height: auto;
+        overflow: visible;
+    }
+
+    .nav-btn:hover .char {
+        transform: none;
+        color: #FFCC33;
+    }
+}
